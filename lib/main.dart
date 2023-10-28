@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:hallo_world/homePage.dart';
 import 'package:hallo_world/search.dart';
+import 'package:hallo_world/map.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-void main() => runApp(SearchPage());
+// void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -22,7 +25,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  // const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -39,6 +43,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        floatingActionButton: const FloatingActionButton(
+          onPressed: setNotification,
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
+        ),
         // appBar: AppBar(title: Text('BottomNavigationBar')),
         body: display[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
@@ -67,44 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
 // --------- 切り替える画面 -----------
 
-class SearchPage extends StatelessWidget {
-  List<String> _list = [
-    'English Textbook',
-    'Japanese Textbook',
-    'English Vocabulary',
-    'Japanese Vocabulary'
-  ];
-
-  Widget _defaultListView() {
-    return ListView.builder(
-        itemCount: _list.length,
-        itemBuilder: (context, index) {
-          return Card(child: ListTile(title: Text(_list[index])));
-        });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("検索"),
-        ),
-        body: _defaultListView());
-  }
-}
-
-class MapPage extends StatelessWidget {
-  const MapPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('地図')),
-      color: Colors.green[200],
-    );
-  }
-}
-
 class MyPage extends StatelessWidget {
   const MyPage({super.key});
 
@@ -115,4 +89,39 @@ class MyPage extends StatelessWidget {
       color: const Color.fromARGB(255, 165, 208, 214),
     );
   }
+}
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  DarwinInitializationSettings initializationSettingsIOS =
+      const DarwinInitializationSettings(
+    requestSoundPermission: true,
+    requestBadgePermission: true,
+    requestAlertPermission: true,
+  );
+  final InitializationSettings initializationSettings = InitializationSettings(
+    iOS: initializationSettingsIOS,
+  );
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+  );
+
+  runApp(const MyApp());
+}
+
+void setNotification() async {
+  const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+      DarwinNotificationDetails(
+          // sound: 'example.mp3',
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true);
+  NotificationDetails platformChannelSpecifics =
+      const NotificationDetails(iOS: iOSPlatformChannelSpecifics);
+  await flutterLocalNotificationsPlugin.show(
+      0, 'title', 'body', platformChannelSpecifics);
 }

@@ -12,7 +12,7 @@ class SearchPage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MySearchPage(title: 'Flutter Demo Home Page'),
+      home: const MySearchPage(title: 'Search Page'),
     );
   }
 }
