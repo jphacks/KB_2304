@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
+import 'dart:developer';
 
 class SearchPage extends StatelessWidget {
   @override
@@ -10,15 +12,15 @@ class SearchPage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MySearchPage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MySearchPage extends StatefulWidget {
   final String title;
 
-  const MyHomePage({
+  const MySearchPage({
     Key? key,
     required this.title,
   }) : super(key: key);
@@ -27,7 +29,22 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MySearchPage> {
+  String _data = "Load JSON Data";
+
+  void _updateJsonData() {
+    setState(() {
+      loadJsonAsset();
+    });
+  }
+
+  Future<void> loadJsonAsset() async {
+    _data = "";
+    String loadData = await rootBundle.loadString('json/kobestation_test.json');
+    _data = loadData;
+    log(_data);
+  }
+
   bool _searchBoolean = false;
   List<int> _searchIndexList = [];
   List<String> _list = [
@@ -103,6 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     IconButton(
                         icon: Icon(Icons.search),
                         onPressed: () {
+                          _updateJsonData();
                           setState(() {
                             _searchBoolean = true;
                             _searchIndexList = [];
@@ -118,6 +136,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           });
                         })
                   ]),
+        // body: !_searchBoolean ? _defaultListView() : _searchListView());
         body: !_searchBoolean ? _defaultListView() : _searchListView());
+        // body: _updateJsonData();
   }
 }
