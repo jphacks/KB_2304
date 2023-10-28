@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hallo_world/homePage.dart';
+import 'package:hallo_world/map.dart';
 import 'package:hallo_world/search.dart';
 
-void main() => runApp(SearchPage());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -62,46 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
           unselectedItemColor: Color.fromARGB(255, 87, 86, 86),
           backgroundColor: Color.fromARGB(255, 82, 88, 89),
         ));
-  }
-}
-
-// --------- 切り替える画面 -----------
-
-class SearchPage extends StatelessWidget {
-  List<String> _list = [
-    'English Textbook',
-    'Japanese Textbook',
-    'English Vocabulary',
-    'Japanese Vocabulary'
-  ];
-
-  Widget _defaultListView() {
-    return ListView.builder(
-        itemCount: _list.length,
-        itemBuilder: (context, index) {
-          return Card(child: ListTile(title: Text(_list[index])));
-        });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("検索"),
-        ),
-        body: _defaultListView());
-  }
-}
-
-class MapPage extends StatelessWidget {
-  const MapPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('地図')),
-      color: Colors.green[200],
-    );
   }
 }
 

@@ -13,6 +13,7 @@ class _MapPageState extends State<MapPage> {
   late GoogleMapController mapController;
   double? lati;
   double? longi;
+  //ウィジェットが最初に作成されたときに呼び出されるメソッド。latiとlongiを初期化するために使う。
   @override
   void initState() {
     super.initState();
@@ -65,7 +66,7 @@ class _MapPageState extends State<MapPage> {
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -75,7 +76,10 @@ class _MapPageState extends State<MapPage> {
           backgroundColor: Color.fromARGB(255, 235, 159, 7),
         ),
         body: GoogleMap(
-          onMapCreated: _onMapCreated,
+          onMapCreated: (GoogleMapController controller) {
+          mapController = controller;
+          },
+          myLocationEnabled: true,
           initialCameraPosition: CameraPosition(
             target: _center,
             zoom: 15.0,
