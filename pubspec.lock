@@ -480,4 +480,3 @@ packages:
 sdks:
   dart: ">=3.1.4 <4.0.0"
   flutter: ">=3.13.0"
-
