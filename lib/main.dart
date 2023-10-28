@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hallo_world/homePage.dart';
+import 'package:hallo_world/search.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(SearchPage());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

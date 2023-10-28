@@ -38,6 +38,7 @@ dependencies:
   flutter_local_notifications: ^16.1.0
   flutter_native_timezone: ^2.0.0
   flutter_app_badger: ^1.5.0
+  google_maps_flutter: ^2.5.0
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +56,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+      - json/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -91,3 +94,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
