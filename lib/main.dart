@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:hallo_world/homePage.dart';
 import 'package:hallo_world/map.dart';
 import 'package:hallo_world/search.dart';
+import 'package:hallo_world/map.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 void main() => runApp(MyApp());
+// void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -23,7 +27,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  // const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -40,6 +45,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        floatingActionButton: const FloatingActionButton(
+          onPressed: setNotification,
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
+        ),
         // appBar: AppBar(title: Text('BottomNavigationBar')),
         body: display[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
@@ -65,7 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
-
 class MyPage extends StatelessWidget {
   const MyPage({super.key});
 
@@ -76,4 +88,39 @@ class MyPage extends StatelessWidget {
       color: const Color.fromARGB(255, 165, 208, 214),
     );
   }
+}
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  DarwinInitializationSettings initializationSettingsIOS =
+      const DarwinInitializationSettings(
+    requestSoundPermission: true,
+    requestBadgePermission: true,
+    requestAlertPermission: true,
+  );
+  final InitializationSettings initializationSettings = InitializationSettings(
+    iOS: initializationSettingsIOS,
+  );
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+  );
+
+  runApp(const MyApp());
+}
+
+void setNotification() async {
+  const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+      DarwinNotificationDetails(
+          // sound: 'example.mp3',
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true);
+  NotificationDetails platformChannelSpecifics =
+      const NotificationDetails(iOS: iOSPlatformChannelSpecifics);
+  await flutterLocalNotificationsPlugin.show(
+      0, 'title', 'body', platformChannelSpecifics);
 }
