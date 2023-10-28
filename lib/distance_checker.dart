@@ -1,30 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-class MapPage extends StatefulWidget {
-  const MapPage({Key? key}) : super(key: key);
-
-  @override
-  State<MapPage> createState() => _MapPageState();
-}
-
-class _MapPageState extends State<MapPage> {
-  late GoogleMapController mapController;
+class Distance {
   double? lati;
   double? longi;
-  //ウィジェットが最初に作成されたときに呼び出されるメソッド。latiとlongiを初期化するために使う。
-  @override
-  void initState() {
-    super.initState();
-    location().then((position) {
-      setState(() {
-        lati = position.latitude;
-        longi = position.longitude;
-      });
-    });
-  }
-
+  late GoogleMapController mapController;
   Future<Position> location() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -62,30 +41,5 @@ class _MapPageState extends State<MapPage> {
   LatLng get _center => lati != null && longi != null
       ? LatLng(lati!, longi!)
       : const LatLng(34.6945454, 135.1952558);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Map！！！！！！！！！'),
-          backgroundColor: Color.fromARGB(255, 235, 159, 7),
-        ),
-        body: GoogleMap(
-          onMapCreated: (GoogleMapController controller) {
-          mapController = controller;
-          },
-          myLocationEnabled: true,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 15.0,
-          ),
-        ),
-      ),
-    );
-  }
+      
 }
