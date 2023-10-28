@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hallo_world/homePage.dart';
+import 'package:hallo_world/map.dart';
 import 'package:hallo_world/search.dart';
 import 'package:hallo_world/map.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+void main() => runApp(MyApp());
 // void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -76,9 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
-
-// --------- 切り替える画面 -----------
-
 class MyPage extends StatelessWidget {
   const MyPage({super.key});
 

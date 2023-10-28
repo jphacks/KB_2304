@@ -5,6 +5,7 @@ PODS:
   - flutter_local_notifications (0.0.1):
     - Flutter
   - flutter_native_timezone (0.0.1):
+    - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
   - google_maps_flutter_ios (0.0.1):
