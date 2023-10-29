@@ -37,34 +37,69 @@ class MySearchPage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+// class Station {
+//   final int Column2;
+//   final String Column3;
+//   final int Column6;
+//   final int Column7;
+//   final String Column8;
+//   final String Column9;
+//   final double Column10;
+//   final double Column11;
+//   final String Column12;
+//   final String Column13;
+//   final int Column14;
+//   final int Column15;
+
+//   Station({
+//     required this.Column2,
+//     required this.Column3,
+//     required this.Column6,
+//     required this.Column7,
+//     required this.Column8,
+//     required this.Column9,
+//     required this.Column10,
+//     required this.Column11,
+//     required this.Column12,
+//     required this.Column13,
+//     required this.Column14,
+//     required this.Column15,
+//   });
+// }
+
 class Station {
-  // final int 表1;
-  final int Column2;
-  final String Column3;
-  final int Column6;
-  final int Column7;
-  final String Column8;
-  final String Column9;
-  final double Column10;
-  final double Column11;
-  final String Column12;
-  final String Column13;
-  final int Column14;
-  final int Column15;
+  final int station_cd;
+  final int station_g_cd;
+  final String station_name;
+  final String station_name_k;
+  final String station_name_r;
+  final int line_cd;
+  final int pref_cd;
+  final String post;
+  final String address;
+  final double lon;
+  final double lat;
+  final String open_ymd;
+  final String close_ymd;
+  final int e_status;
+  final int e_sort;
 
   Station({
-    required this.Column2,
-    required this.Column3,
-    required this.Column6,
-    required this.Column7,
-    required this.Column8,
-    required this.Column9,
-    required this.Column10,
-    required this.Column11,
-    required this.Column12,
-    required this.Column13,
-    required this.Column14,
-    required this.Column15,
+    required this.station_cd,
+    required this.station_g_cd,
+    required this.station_name,
+    required this.station_name_k,
+    required this.station_name_r,
+    required this.line_cd,
+    required this.pref_cd,
+    required this.post,
+    required this.address,
+    required this.lon,
+    required this.lat,
+    required this.open_ymd,
+    required this.close_ymd,
+    required this.e_status,
+    required this.e_sort,
   });
 }
 
@@ -80,96 +115,40 @@ class _MyHomePageState extends State<MySearchPage> {
   Station? station;
 
   void _updateJsonData() {
-    // 直打ち用
-    final data = [
-      {
-        "Column2": 1160313,
-        "Column3": "神戸三宮",
-        "Column6": 34001,
-        "Column7": 28,
-        "Column8": "650-0001",
-        "Column9": "神戸市中央区加納町４-２-１",
-        "Column10": 135.192862,
-        "Column11": 34.693136,
-        "Column12": "0000-00-00",
-        "Column13": "0000-00-00",
-        "Column14": 0,
-        "Column15": 3400116
-      },
-      {
-        "Column2": 3400115,
-        "Column3": "春日野道",
-        "Column6": 34001,
-        "Column7": 28,
-        "Column8": "651-0076",
-        "Column9": "神戸市中央区吾妻通一丁目",
-        "Column10": 135.205396,
-        "Column11": 34.70299,
-        "Column12": "0000-00-00",
-        "Column13": "0000-00-00",
-        "Column14": 0,
-        "Column15": 3400115
-      },
-    ];
-
-    for (int i = 0; i < data.length; i++) {
-      const dson = DSON();
-      stations.add(dson.fromJson(data[i], Station.new));
+    // jsonファイル読み込み用
+    if (tes == 0) {
+      getLocalTestJSONData();
+      tes++;
     }
-
-    if (a == 0) {
-      for (int i = 0; i < stations.length; i++) {
-        _list.add(stations[i].Column3);
-        a++;
-      }
-    }
-
-    setState(() {
-      _list;
-    });
-
-    //実験中
-    // if (tes == 0) {
-    //   getLocalTestJSONData();
-    //   tes++;
-    // }
   }
-  // Future<void> loadAsset() async {}
 
   /*
-   * ローカルJSONファイル読み込みテスト用「api_name.json」
+   * ローカルJSONファイル読み込みテスト用'json/kobestation_test.json'
    */
   Future<String> _loadAVaultAsset() async {
-    return await rootBundle.loadString('json/kobestation_test.json');
+    return await rootBundle.loadString('json/station.json');
   }
 
-  int b = 0;
   /*
    * ローカルJSON　データセット
    */
   Future getLocalTestJSONData() async {
-    // String jsonString = await _loadAVaultAsset();
-    // final jsonResponse = json.decode(jsonString);
-    // log("dmksfms");
-    // station = jsonResponse;
+    String jsonString = await _loadAVaultAsset();
+    var jsonResponse = jsonDecode(jsonString) as List<dynamic>;
 
-    // b++;
+    for (int i = 0; i < jsonResponse.length; i++) {
+      const dson = DSON();
+      stations.add(dson.fromJson(jsonResponse[i], Station.new));
+    }
 
-    // String jsonString = await _loadAVaultAsset();
-    // final jsonResponse = json.decode(jsonString);
-    // log("dmksfms");
+    if (a == 0) {
+      for (int i = 0; i < stations.length; i++) {
+        // _list.add(stations[i].Column3);
+        _list.add(stations[i].station_name);
 
-    // for (int i = 0; i < jsonResponse.length; i++) {
-    //   const dson = DSON();
-    //   stations.add(dson.fromJson(jsonString[i], Dynamic.new));
-    // }
-
-    // if (a == 0) {
-    //   for (int i = 0; i < stations.length; i++) {
-    //     _list.add(stations[i].Column3);
-    //     a++;
-    //   }
-    // }
+        a++;
+      }
+    }
 
     setState(() {
       _list;
