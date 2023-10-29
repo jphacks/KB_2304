@@ -180,8 +180,6 @@ class Noti{
 }
 }
 void setNotification() async {
-  Station station = Station("三宮", 34.6945454, 135.1952558);
-  Noti.judge(station.checker(1000));
   const DarwinNotificationDetails iOSPlatformChannelSpecifics =
       DarwinNotificationDetails(
           // sound: 'example.mp3',
