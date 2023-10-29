@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hallo_world/distance_checker.dart';
 import 'package:hallo_world/homePage.dart';
 import 'package:hallo_world/map.dart';
 import 'package:hallo_world/search.dart';
+import 'package:hallo_world/myPage.dart';
 import 'package:hallo_world/notification.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -40,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // 切り替える画面のリスト
   List<Widget> display = [HomePage(), SearchPage(), MapPage(), MyPage()];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,18 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
           unselectedItemColor: Color.fromARGB(255, 87, 86, 86),
           backgroundColor: Color.fromARGB(255, 82, 88, 89),
         ));
-  }
-}
-
-class MyPage extends StatelessWidget {
-  const MyPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('マイページ')),
-      color: const Color.fromARGB(255, 165, 208, 214),
-    );
   }
 }
 

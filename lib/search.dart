@@ -3,6 +3,8 @@ import 'package:flutter/services.dart' show rootBundle;
 
 import 'dart:developer';
 
+import 'package:hallo_world/distance_checker.dart';
+
 class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
