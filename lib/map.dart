@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hallo_world/distance_checker.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -13,6 +14,9 @@ class MapPageState extends State<MapPage> {
   late GoogleMapController mapController;
   double? lati;
   double? longi;
+  // Station station = Station('三ノ宮', 34.6945454, 135.1952558);
+  // TODO getStationクラスを作る
+  LatLng stationCenter = LatLng(34.6945454, 135.1952558);
   //ウィジェットが最初に作成されたときに呼び出されるメソッド。latiとlongiを初期化するために使う。
   @override
   void initState() {
@@ -84,6 +88,16 @@ class MapPageState extends State<MapPage> {
             target: _center,
             zoom: 15.0,
           ),
+          circles: {
+            Circle(
+              circleId: CircleId('circle_1'),
+              center: stationCenter,
+              radius: 1000,
+              fillColor: Colors.blue.withOpacity(0.5),
+              strokeColor: Colors.blue,
+              strokeWidth: 2,
+            ),
+          },
         ),
       ),
     );
