@@ -2,7 +2,7 @@ name: hallo_world
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.4 <4.0.0'
+  sdk: ">=3.1.4 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -31,7 +31,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -41,6 +40,11 @@ dependencies:
   google_maps_flutter: ^2.5.0
   dson: ^2.0.0
   dson_adapter: ^1.2.0+2
+  geolocator: ^10.1.0
+  intl: ^0.18.1
+  flutter_ringtone_player: ^3.2.0
+  provider: ^6.0.5
+  flutter_picker: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -59,7 +63,7 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
   assets:
-      - json/
+    - json/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -96,4 +100,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-

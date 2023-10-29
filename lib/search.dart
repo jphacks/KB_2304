@@ -9,6 +9,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:dson_adapter/dson_adapter.dart';
 
+import 'package:hallo_world/distance_checker.dart';
+
 class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class SearchPage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MySearchPage(title: 'Flutter Demo Home Page'),
+      home: const MySearchPage(title: 'Search Page'),
     );
   }
 }
@@ -132,7 +134,6 @@ class _MyHomePageState extends State<MySearchPage> {
     //   tes++;
     // }
   }
-
   // Future<void> loadAsset() async {}
 
   /*
@@ -181,7 +182,6 @@ class _MyHomePageState extends State<MySearchPage> {
   Widget _searchTextField() {
     return TextField(
       onChanged: (String s) {
-        //追加
         setState(() {
           _searchIndexList = [];
           for (int i = 0; i < _list.length; i++) {
