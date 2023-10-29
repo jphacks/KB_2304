@@ -9,21 +9,23 @@ class Station {
   double? stationLongi;
   double? distance;
   String? stationName;
-  Station(String stationName,double stationLati, double stationLongi) {
+  Station(String stationName, double stationLati, double stationLongi) {
     mapPageState.location();
     stationName = stationName;
     lati = mapPageState.lati;
     longi = mapPageState.longi;
     stationLati = stationLati;
     stationLongi = stationLongi;
-    distance =  Geolocator.distanceBetween(
-        stationLati, stationLongi, lati!, longi!);
+    lati = 30;
+    longi = 100;
+    distance =
+        Geolocator.distanceBetween(stationLati, stationLongi, mapPageState.getLati(), mapPageState.getLongi());
   }
   //距離計算、引数より短い距離にいるときtrueを返す
-  checker(int checkerDistance){
-    if(distance! < checkerDistance){
+  checker(int checkerDistance) {
+    if (distance! < checkerDistance) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }

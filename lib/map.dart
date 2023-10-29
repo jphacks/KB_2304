@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hallo_world/distance_checker.dart';
+import 'package:hallo_world/notification.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({Key? key}) : super(key: key);
@@ -62,6 +63,7 @@ class MapPageState extends State<MapPage> {
     // デバイスの位置情報を返す。
     return await Geolocator.getCurrentPosition();
   }
+
   //緯度経度の設定。もし緯度経度がnullだったら、 神戸三ノ宮駅の緯度経度を設定する。
   LatLng get _center => lati != null && longi != null
       ? LatLng(lati!, longi!)
@@ -69,6 +71,22 @@ class MapPageState extends State<MapPage> {
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
+  }
+
+  double getLati() {
+    if (lati == null) {
+      return lati!;
+    }else{
+      return lati!;
+    }
+  }
+
+  double getLongi() {
+    if (longi == null) {
+      return longi!;
+    }else{
+      return longi!;
+    }
   }
 
   @override
@@ -81,7 +99,7 @@ class MapPageState extends State<MapPage> {
         ),
         body: GoogleMap(
           onMapCreated: (GoogleMapController controller) {
-          mapController = controller;
+            mapController = controller;
           },
           myLocationEnabled: true,
           initialCameraPosition: CameraPosition(
