@@ -1,13 +1,14 @@
 import 'package:geolocator/geolocator.dart';
+import 'package:hallo_world/map.dart';
 
 class GetLocation {
-  static int? lati;
-  static int? longi;
-  static Future<Position> getLocation() async {
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    lati = position.latitude as int?;
-    longi = position.longitude as int?;
-    return position;
+  final mapPageState = MapPageState();
+  double? lati;
+  double? longi;
+  GetLocation() {
+    mapPageState.location();
+    lati = mapPageState.lati;
+    longi = mapPageState.longi;
   }
+  
 }
