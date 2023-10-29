@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hallo_world/distance_checker.dart';
 import 'package:hallo_world/homePage.dart';
+import 'package:hallo_world/map.dart';
 import 'package:hallo_world/search.dart';
-
-void main() => runApp(
-      const MaterialApp(
-        home: MyApp(),
-      ),
-    );
+import 'package:hallo_world/myPage.dart';
+import 'package:hallo_world/notification.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext contexxt) {
     return MaterialApp(
       title: 'demo',
       debugShowCheckedModeBanner: false,
@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  // const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
@@ -36,13 +37,20 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // 選択中フッターメニューのインデックスを一時保存する用変数
   int selectedIndex = 0;
-
+  
   // 切り替える画面のリスト
   List<Widget> display = [HomePage(), SearchPage(), MapPage(), MyPage()];
-
   @override
   Widget build(BuildContext context) {
+    StationDistance station = StationDistance("三宮", 34.6945454, 135.1952558);
+    Noti.judge(station.checker(1000));
+    print(station.checker(1000));
     return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // appBar: AppBar(title: Text('BottomNavigationBar')),
         body: display[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
@@ -69,54 +77,21 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-// --------- 切り替える画面 -----------
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-// class SearchPage extends StatelessWidget {
-//   List<String> _list = [
-//     'テスト',
-//     'Japanese Textbook',
-//     'English Vocabulary',
-//     'Japanese Vocabulary'
-//   ];
+  DarwinInitializationSettings initializationSettingsIOS =
+      const DarwinInitializationSettings(
+    requestSoundPermission: true,
+    requestBadgePermission: true,
+    requestAlertPermission: true,
+  );
+  final InitializationSettings initializationSettings = InitializationSettings(
+    iOS: initializationSettingsIOS,
+  );
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+  );
 
-//   Widget _defaultListView() {
-//     return ListView.builder(
-//         itemCount: _list.length,
-//         itemBuilder: (context, index) {
-//           return Card(child: ListTile(title: Text(_list[index])));
-//         });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         appBar: AppBar(
-//           title: Text("検索"),
-//         ),
-//         body: _defaultListView());
-//   }
-// }
-
-class MapPage extends StatelessWidget {
-  const MapPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('地図')),
-      color: Colors.green[200],
-    );
-  }
-}
-
-class MyPage extends StatelessWidget {
-  const MyPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('マイページ')),
-      color: const Color.fromARGB(255, 165, 208, 214),
-    );
-  }
+  runApp(const MyApp());
 }
