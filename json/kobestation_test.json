@@ -1,23 +1,5 @@
 [
   {
-    "表1": "station_cd",
-    "Column2": "station_g_cd",
-    "Column3": "station_name",
-    "Column4": "station_name_k",
-    "Column5": "station_name_r",
-    "Column6": "line_cd",
-    "Column7": "pref_cd",
-    "Column8": "post",
-    "Column9": "address",
-    "Column10": "lon",
-    "Column11": "lat",
-    "Column12": "open_ymd",
-    "Column13": "close_ymd",
-    "Column14": "e_status",
-    "Column15": "e_sort"
-  },
-  {
-    "表1": 3400116,
     "Column2": 1160313,
     "Column3": "神戸三宮",
     "Column6": 34001,
@@ -32,7 +14,6 @@
     "Column15": 3400116
   },
   {
-    "表1": 3500132,
     "Column2": 1160313,
     "Column3": "神戸三宮",
     "Column6": 35001,
@@ -47,7 +28,6 @@
     "Column15": 3500132
   },
   {
-    "表1": 3400115,
     "Column2": 3400115,
     "Column3": "春日野道",
     "Column6": 34001,
@@ -62,7 +42,6 @@
     "Column15": 3400115
   },
   {
-    "表1": 3500131,
     "Column2": 3500131,
     "Column3": "春日野道",
     "Column6": 35001,

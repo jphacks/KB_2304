@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hallo_world/homePage.dart';
 import 'package:hallo_world/search.dart';
 
-void main() => runApp(SearchPage());
+void main() => runApp(
+      const MaterialApp(
+        home: MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -67,31 +71,31 @@ class _MyHomePageState extends State<MyHomePage> {
 
 // --------- 切り替える画面 -----------
 
-class SearchPage extends StatelessWidget {
-  List<String> _list = [
-    'English Textbook',
-    'Japanese Textbook',
-    'English Vocabulary',
-    'Japanese Vocabulary'
-  ];
+// class SearchPage extends StatelessWidget {
+//   List<String> _list = [
+//     'テスト',
+//     'Japanese Textbook',
+//     'English Vocabulary',
+//     'Japanese Vocabulary'
+//   ];
 
-  Widget _defaultListView() {
-    return ListView.builder(
-        itemCount: _list.length,
-        itemBuilder: (context, index) {
-          return Card(child: ListTile(title: Text(_list[index])));
-        });
-  }
+//   Widget _defaultListView() {
+//     return ListView.builder(
+//         itemCount: _list.length,
+//         itemBuilder: (context, index) {
+//           return Card(child: ListTile(title: Text(_list[index])));
+//         });
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("検索"),
-        ),
-        body: _defaultListView());
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(
+//           title: Text("検索"),
+//         ),
+//         body: _defaultListView());
+//   }
+// }
 
 class MapPage extends StatelessWidget {
   const MapPage({super.key});
