@@ -44,18 +44,14 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> display = [HomePage(), SearchPage(), MapPage(), MyPage()];
   @override
   Widget build(BuildContext context) {
-    Station station = Station("三宮", 34.6945454, 135.1952558);
+    StationDistance station = StationDistance("三宮", 34.6945454, 135.1952558);
     Noti.judge(station.checker(1000));
     print(station.checker(1000));
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        floatingActionButton: const FloatingActionButton(
-          onPressed: setNotification,
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-        ),
+        
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // appBar: AppBar(title: Text('BottomNavigationBar')),
         body: display[selectedIndex],

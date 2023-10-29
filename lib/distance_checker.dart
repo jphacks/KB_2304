@@ -3,7 +3,7 @@ import 'dart:ffi';
 import 'package:geolocator/geolocator.dart';
 import 'package:hallo_world/map.dart';
 
-class Station {
+class StationDistance {
   final mapPageState = MapPageState();
   double? lati;
   double? longi;
@@ -25,7 +25,7 @@ class Station {
   //   distance =
   //       Geolocator.distanceBetween(stationLati, stationLongi, lati!, longi!);
   // }
-  Station(String stationName, double stationLati, double stationLongi) {
+  StationDistance(String stationName, double stationLati, double stationLongi) {
     this.stationName = stationName;
     this.stationLati = stationLati;
     this.stationLongi = stationLongi;
@@ -53,8 +53,8 @@ class Station {
     if (distance == null) {
       getLocation("神戸三ノ宮", 34.694545, 135.195256);
       if (lati == null || longi == null) {
-        lati = 30;
-        longi = 100;
+        lati = 34.694545;
+        longi = 135.195256;
         getLocation("神戸三ノ宮", 34.694545, 135.195256);
         distance =
             Geolocator.distanceBetween(34.694545, 135.195256, lati!, longi!);
@@ -71,12 +71,12 @@ class Station {
         return false;
       }
     } else {
-      // print(distance);
-      // getLocation("神戸三ノ宮", 34.694545, 135.195256);
-      // distance =
-      //     Geolocator.distanceBetween(34.694545, 135.195256, lati!, longi!);
-      // print("lati");
-      // print(lati);
+      print(distance);
+      getLocation("神戸三ノ宮", 34.694545, 135.195256);
+      distance =
+          Geolocator.distanceBetween(34.694545, 135.195256, lati!, longi!);
+      print("lati");
+      print(lati);
       print("判定");
       print(distance);
       print(checkerDistance);
