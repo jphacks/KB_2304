@@ -42,7 +42,6 @@ class _MyHomePageState extends State<MySearchPage> {
     _data = "";
     String loadData = await rootBundle.loadString('json/kobestation_test.json');
     _data = loadData;
-    log(_data);
   }
 
   bool _searchBoolean = false;
@@ -57,7 +56,6 @@ class _MyHomePageState extends State<MySearchPage> {
   Widget _searchTextField() {
     return TextField(
       onChanged: (String s) {
-        //追加
         setState(() {
           _searchIndexList = [];
           for (int i = 0; i < _list.length; i++) {
