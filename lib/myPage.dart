@@ -24,6 +24,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int checkerDistance = 100;
+  var isOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,32 +34,45 @@ class _HomeState extends State<Home> {
       ),
       body: Center(
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          // onTap: () => FocusScope.of(context).unfocus(),
           child: SingleChildScrollView(
             child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 10.0),
-                  child: TextField(
-                      onChanged: (text) {
-                        setState(() {
-                          if (int.parse(text) >= 0 &&
-                              int.parse(text) <= 25000) {
-                            checkerDistance = 100;
-                          } else {
-                            checkerDistance = int.parse(text);
+              children: <Widget>[
+                TextField(
+                    onChanged: (text) {
+                      setState(() {
+                        if (int.parse(text) >= 0 && int.parse(text) <= 25000) {
+                          checkerDistance = 100;
+                        } else {
+                          checkerDistance = int.parse(text);
+                        }
+                      });
+                    },
+                    decoration: InputDecoration(
+                      hintText: '0m~20000m',
+                      labelText: 'distance(m)',
+                    ),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly]),
+                Column(
+                  children: <Widget>[
+                    new SwitchListTile(
+                        value: isOn,
+                        activeColor: Colors.blue,
+                        activeTrackColor: Colors.blue,
+                        inactiveThumbColor: Colors.grey,
+                        inactiveTrackColor: Colors.grey,
+                        title: Text('通知の音'),
+                        onChanged: (bool? value) {
+                          if (value != null) {
+                            setState(() {
+                              isOn = value;
+                              print("$isOn");
+                            });
                           }
-                        });
-                      },
-                      decoration: InputDecoration(
-                        hintText: '100m~20000m',
-                        labelText: 'distance(m)',
-                      ),
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly
-                      ]),
-                ),
+                        })
+                  ],
+                )
               ],
             ),
           ),
