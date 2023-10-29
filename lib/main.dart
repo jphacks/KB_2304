@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hallo_world/homePage.dart';
 import 'package:hallo_world/map.dart';
 import 'package:hallo_world/search.dart';
+import 'package:hallo_world/notification.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-// void main() => runApp(MyApp());
 // void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
           tooltip: 'Increment',
           child: Icon(Icons.add),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // appBar: AppBar(title: Text('BottomNavigationBar')),
         body: display[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
@@ -77,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
+
 class MyPage extends StatelessWidget {
   const MyPage({super.key});
 
@@ -88,9 +90,6 @@ class MyPage extends StatelessWidget {
     );
   }
 }
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -109,17 +108,4 @@ void main() async {
   );
 
   runApp(const MyApp());
-}
-
-void setNotification() async {
-  const DarwinNotificationDetails iOSPlatformChannelSpecifics =
-      DarwinNotificationDetails(
-          // sound: 'example.mp3',
-          presentAlert: true,
-          presentBadge: true,
-          presentSound: true);
-  NotificationDetails platformChannelSpecifics =
-      const NotificationDetails(iOS: iOSPlatformChannelSpecifics);
-  await flutterLocalNotificationsPlugin.show(
-      0, 'title', 'body', platformChannelSpecifics);
 }
