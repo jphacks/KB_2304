@@ -7,8 +7,6 @@ import 'package:hallo_world/myPage.dart';
 import 'package:hallo_world/notification.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-// void main() => runApp(MyApp());
-
 class MyApp extends StatelessWidget {
   // const MyApp({super.key});
   const MyApp({Key? key}) : super(key: key);
