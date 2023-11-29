@@ -23,7 +23,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int checkerDistance = 100;
+  var checkerDistance = 100;
   var isOn = false;
 
   @override
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
                       });
                     },
                     decoration: InputDecoration(
-                      hintText: '0m~20000m',
+                      // hintText: String(checkerDistance),
                       labelText: 'distance(m)',
                     ),
                     keyboardType: TextInputType.number,
