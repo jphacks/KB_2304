@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'myPage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hallo_world/distance_checker.dart';
@@ -11,7 +13,6 @@ import 'package:timezone/timezone.dart' as tz;
 //   _setupTimeZone();
 //   runApp(TimerApp());
 // }
-
 
 // // タイムゾーンを設定する
 // Future<void> _setupTimeZone() async {
@@ -171,25 +172,34 @@ import 'package:timezone/timezone.dart' as tz;
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-
-class Noti{
+class Noti {
   static judge(bool flg) {
-  if (flg) {
-    setNotification();
+    if (flg) {
+      setNotification();
+    }
   }
 }
-}
+
 void setNotification() async {
+  var sound = Setting.getSound();
   // Station station = Station("三宮", 34.6945454, 135.1952558);
   // Noti.judge(station.checker(1000));
-  const DarwinNotificationDetails iOSPlatformChannelSpecifics =
-      DarwinNotificationDetails(
-          // sound: 'example.mp3',
-          presentAlert: true,
-          presentBadge: true,
-          presentSound: true);
-  NotificationDetails platformChannelSpecifics =
-      const NotificationDetails(iOS: iOSPlatformChannelSpecifics);
-  await flutterLocalNotificationsPlugin.show(
-      0, 'title', 'body', platformChannelSpecifics);
+  if (sound) {
+    const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+        DarwinNotificationDetails(
+            presentAlert: true, presentBadge: true, presentSound: true);
+    NotificationDetails platformChannelSpecifics =
+        const NotificationDetails(iOS: iOSPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'title', 'body', platformChannelSpecifics);
+  } else {
+    const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+        DarwinNotificationDetails(
+            presentAlert: true, presentBadge: true, presentSound: false);
+    NotificationDetails platformChannelSpecifics =
+        const NotificationDetails(iOS: iOSPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'title', 'body', platformChannelSpecifics);
+  }
 }
+

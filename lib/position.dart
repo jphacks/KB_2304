@@ -10,5 +10,4 @@ class GetLocation {
     lati = mapPageState.lati;
     longi = mapPageState.longi;
   }
-  
 }
