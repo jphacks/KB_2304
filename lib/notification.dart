@@ -1,17 +1,9 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:hallo_world/distance_checker.dart';
-import 'package:intl/intl.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 
 // void main() async {
 //   _setupTimeZone();
 //   runApp(TimerApp());
 // }
-
 
 // // タイムゾーンを設定する
 // Future<void> _setupTimeZone() async {
@@ -171,17 +163,15 @@ import 'package:timezone/timezone.dart' as tz;
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-
-class Noti{
+class Noti {
   static judge(bool flg) {
-  if (flg) {
-    setNotification();
+    if (flg) {
+      setNotification();
+    }
   }
 }
-}
+
 void setNotification() async {
-  // Station station = Station("三宮", 34.6945454, 135.1952558);
-  // Noti.judge(station.checker(1000));
   const DarwinNotificationDetails iOSPlatformChannelSpecifics =
       DarwinNotificationDetails(
           // sound: 'example.mp3',
@@ -191,5 +181,5 @@ void setNotification() async {
   NotificationDetails platformChannelSpecifics =
       const NotificationDetails(iOS: iOSPlatformChannelSpecifics);
   await flutterLocalNotificationsPlugin.show(
-      0, 'title', 'body', platformChannelSpecifics);
+      0, '着いたぞ！降りろ！！', 'もう着くよ！', platformChannelSpecifics);
 }

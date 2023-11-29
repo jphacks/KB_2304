@@ -61,7 +61,9 @@ class MapPageState extends State<MapPage> {
 
     // ここまでたどり着くと、位置情報に対しての権限が許可されているということなので
     // デバイスの位置情報を返す。
-    return await Geolocator.getCurrentPosition();
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    return position;
   }
 
   //緯度経度の設定。もし緯度経度がnullだったら、 神戸三ノ宮駅の緯度経度を設定する。
@@ -73,17 +75,50 @@ class MapPageState extends State<MapPage> {
     mapController = controller;
   }
 
-  double getLati() {
+  // double getLati() {
+  //   // location().then((position) {
+  //   //     lati = position.latitude;
+  //   //     longi = position.longitude;
+  //   // });
+  //   if (lati == null) {
+  //     return 34.6514139;
+  //   } else {
+  //     return lati!;
+  //   }
+  // }
+
+  // double getLongi() {
+  //   // location().then((position) {
+  //   //     lati = position.latitude;
+  //   //     longi = position.longitude;
+  //   // });
+  //   if (longi == null) {
+  //     return 135.5869639;
+  //   } else {
+  //     return longi!;
+  //   }
+  // }
+  Future<double> getLati() async {
     if (lati == null) {
-      return lati!;
+      Position position = await location();
+      lati = position.latitude as double;
+      longi = position.longitude as double;
+    }
+    if (lati == null) {
+      return 34.6514139;
     } else {
       return lati!;
     }
   }
 
-  double getLongi() {
+  Future<double> getLongi() async {
     if (longi == null) {
-      return longi!;
+      Position position = await location();
+      lati = position.latitude as double;
+      longi = position.longitude as double;
+    }
+    if (longi == null) {
+      return 135.5869639;
     } else {
       return longi!;
     }
