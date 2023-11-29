@@ -39,7 +39,7 @@ dependencies:
   flutter_app_badger: ^1.5.0
   google_maps_flutter: ^2.5.0
   dson: ^2.0.0
-  dson_adapter: ^1.2.0+2
+  # dson_adapter: ^1.2.0+2
   geolocator: ^10.1.0
   intl: ^0.18.1
   flutter_ringtone_player: ^3.2.0

@@ -1,4 +1,4 @@
-import 'dart:ffi';
+// import 'dart:ffi';
 
 import 'package:geolocator/geolocator.dart';
 import 'package:hallo_world/map.dart';
@@ -43,9 +43,8 @@ class StationDistance {
     print(lati);
     distance =
         Geolocator.distanceBetween(stationLati, stationLongi, lati!, longi!);
-        print(distance);
+    print(distance);
     return distance!;
-    
   }
 
   //距離計算、引数より短い距離にいるときtrueを返す
@@ -61,8 +60,7 @@ class StationDistance {
         print("1");
       } else {
         getLocation("神戸三ノ宮", 34.694545, 135.195256);
-        distance =
-            100;
+        distance = 100;
         print("2");
       }
       if (distance! < checkerDistance) {
