@@ -18,8 +18,8 @@ class Station {
     stationLongi = stationLongi;
     lati = 30;
     longi = 100;
-    distance =
-        Geolocator.distanceBetween(stationLati, stationLongi, mapPageState.getLati(), mapPageState.getLongi());
+    distance = Geolocator.distanceBetween(stationLati, stationLongi,
+        mapPageState.getLati(), mapPageState.getLongi());
   }
   //距離計算、引数より短い距離にいるときtrueを返す
   checker(int checkerDistance) {

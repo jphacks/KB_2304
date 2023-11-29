@@ -76,7 +76,7 @@ class MapPageState extends State<MapPage> {
   double getLati() {
     if (lati == null) {
       return lati!;
-    }else{
+    } else {
       return lati!;
     }
   }
@@ -84,7 +84,7 @@ class MapPageState extends State<MapPage> {
   double getLongi() {
     if (longi == null) {
       return longi!;
-    }else{
+    } else {
       return longi!;
     }
   }
