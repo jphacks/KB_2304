@@ -1,5 +1,7 @@
 import 'dart:ffi';
 
+import 'notification.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,9 +24,22 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
+var sound = true;
+var checkerDistance = 100;
+
+class Setting {
+  // sound;
+
+  static getSound() {
+    return sound;
+  }
+
+  static getCheckerDistance() {
+    return checkerDistance;
+  }
+}
+
 class _HomeState extends State<Home> {
-  var checkerDistance = 100;
-  var isOn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +72,7 @@ class _HomeState extends State<Home> {
                 Column(
                   children: <Widget>[
                     new SwitchListTile(
-                        value: isOn,
+                        value: sound,
                         activeColor: Colors.blue,
                         activeTrackColor: Colors.blue,
                         inactiveThumbColor: Colors.grey,
@@ -66,8 +81,8 @@ class _HomeState extends State<Home> {
                         onChanged: (bool? value) {
                           if (value != null) {
                             setState(() {
-                              isOn = value;
-                              print("$isOn");
+                              sound = value;
+                              print("$sound");
                             });
                           }
                         })

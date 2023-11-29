@@ -49,7 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // appBar: AppBar(title: Text('BottomNavigationBar')),
         body: display[selectedIndex],
@@ -82,7 +81,7 @@ void main() async {
 
   DarwinInitializationSettings initializationSettingsIOS =
       const DarwinInitializationSettings(
-    requestSoundPermission: true,
+    requestSoundPermission: false,
     requestBadgePermission: true,
     requestAlertPermission: true,
   );

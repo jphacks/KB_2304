@@ -1,3 +1,8 @@
+import 'dart:async';
+
+import 'myPage.dart';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // void main() async {
@@ -172,14 +177,25 @@ class Noti {
 }
 
 void setNotification() async {
-  const DarwinNotificationDetails iOSPlatformChannelSpecifics =
-      DarwinNotificationDetails(
-          // sound: 'example.mp3',
-          presentAlert: true,
-          presentBadge: true,
-          presentSound: true);
-  NotificationDetails platformChannelSpecifics =
-      const NotificationDetails(iOS: iOSPlatformChannelSpecifics);
-  await flutterLocalNotificationsPlugin.show(
-      0, '着いたぞ！降りろ！！', 'もう着くよ！', platformChannelSpecifics);
+  var sound = Setting.getSound();
+  // Station station = Station("三宮", 34.6945454, 135.1952558);
+  // Noti.judge(station.checker(1000));
+  if (sound) {
+    const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+        DarwinNotificationDetails(
+            presentAlert: true, presentBadge: true, presentSound: true);
+    NotificationDetails platformChannelSpecifics =
+        const NotificationDetails(iOS: iOSPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'title', 'body', platformChannelSpecifics);
+  } else {
+    const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+        DarwinNotificationDetails(
+            presentAlert: true, presentBadge: true, presentSound: false);
+    NotificationDetails platformChannelSpecifics =
+        const NotificationDetails(iOS: iOSPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'title', 'body', platformChannelSpecifics);
+  }
 }
+

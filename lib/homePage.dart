@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(title: const Text('')),
         body: const Center(
-
+          child: DropdownButtonExample(),
         ),
       ),
     );
