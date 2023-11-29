@@ -37,7 +37,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // 選択中フッターメニューのインデックスを一時保存する用変数
   int selectedIndex = 0;
-
+  
   // 切り替える画面のリスト
   List<Widget> display = [HomePage(), SearchPage(), MapPage(), MyPage()];
   @override
